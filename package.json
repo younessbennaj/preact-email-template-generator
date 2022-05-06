@@ -1,0 +1,12 @@
+{
+  "name": "react-teg",
+  "version": "1.0.0",
+  "description": "This project is a developer-first and accessibility-first template email generator.",
+  "main": "renderer.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,20 +1,32 @@
-import { html } from "htm/preact/index.mjs";
+import {
+  html,
+  render as renderComponent,
+  Component,
+} from "htm/preact/index.mjs";
 import render from "preact-render-to-string";
 
-export const body = html`
+const title = "Email template title";
+
+const Header = ({ text }) => html`<h1>${text}</h1>`;
+
+export const Template = html`
+  <div>
+    <${Header} text=${title} />
+    <p>A simple Email Tempmate Generate with React</p>
+  </div>
+`;
+
+const Layout = html`
   <html>
     <head>
       <title>Mon premier template</title>
     </head>
     <body>
-      <div>
-        <h1>Hello World!</h1>
-        <p>A simple Email Tempmate Generate with React</p>
-      </div>
+      ${Template}
     </body>
   </html>
 `;
 
-const htmlContent = render(body);
+const htmlContent = render(Layout);
 
 console.log(htmlContent);

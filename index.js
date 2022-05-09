@@ -1,35 +1,21 @@
-import {
-  html,
-  render as renderComponent,
-  Component,
-} from "htm/preact/index.mjs";
+import { html } from "htm/preact/index.mjs";
 import render from "preact-render-to-string";
 import { promises as fs } from "fs";
 import { fileURLToPath, pathToFileURL } from "url";
 
-const title = "Email template title";
+import { Layout } from "./layouts/layout.js";
+import { AccountStatementTemplate } from "./layouts/template.js";
 
-const Header = ({ text }) => html`<h1>${text}</h1>`;
+import { Heading, Text } from "./components/typography.js";
 
-export const Template = html`
-  <div>
-    <${Header} text=${title} />
-    <p>A simple Email Tempmate Generate with React</p>
-  </div>
+const Document = html`
+  <${Layout}
+    pageTitle="Email Template Generated"
+    template=${AccountStatementTemplate}
+  />
 `;
 
-const Layout = html`
-  <html>
-    <head>
-      <title>Mon premier template</title>
-    </head>
-    <body>
-      ${Template}
-    </body>
-  </html>
-`;
-
-const output = render(Layout);
+const output = render(Document);
 
 console.log(output);
 

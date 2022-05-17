@@ -14,16 +14,15 @@ export const Heading = (props) => html`
   />
 `;
 
-export const Text = ({ text, spacing }) => html`
+export const Text = (props) => html`
   <p
+    ...${props}
     style="
       font-size: 14px;
       line-height: 22px;
       margin: 0;
-      margin-bottom: ${spacing};
+      margin-bottom: ${props.spacing};
       text-align: left;
       color: #8295a9;"
-  >
-    ${text}
-  </p>
+  />
 `;

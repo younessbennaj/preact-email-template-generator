@@ -1,4 +1,5 @@
 import { html } from "htm/preact/index.mjs";
+import { Layout } from "../layouts/layout.js";
 import { SmallTransactionalTemplateWrapper } from "../components/wrapper.js";
 
 const title = "Un nouveau relevé de compte est disponible!";
@@ -18,11 +19,18 @@ const paragraph = html`
   <strong style="font-weight: 600">${" "}Comptes</strong>
 `;
 
-export const AccountStatementTemplate = html`
+const AccountStatementTemplate = html`
   <${SmallTransactionalTemplateWrapper}
     title=${title}
     paragraph=${paragraph}
     buttonLink=${"https://app.leeto.co/admin/comptes"}
     buttonLabel=${"Voir mon relevé"}
+  />
+`;
+
+export const template = html`
+  <${Layout}
+    pageTitle="Email Template Generated"
+    template=${AccountStatementTemplate}
   />
 `;

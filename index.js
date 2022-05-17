@@ -3,24 +3,28 @@ import render from "preact-render-to-string";
 import { promises as fs } from "fs";
 import { fileURLToPath, pathToFileURL } from "url";
 
-import { Layout } from "./layouts/layout.js";
-import { AccountStatementTemplate } from "./templates/account-statement-template.js";
+import { template } from "./templates/account-statement-template.js";
 
-import { Heading, Text } from "./components/typography.js";
+const output = render(template);
 
-const Document = html`
-  <${Layout}
-    pageTitle="Email Template Generated"
-    template=${AccountStatementTemplate}
-  />
-`;
-
-const output = render(Document);
-
-console.log(output);
-
-// Save generated html in /output directory
 const outputUrl = pathToFileURL(`${process.cwd()}/${"./output/"}`);
-const outfile = new URL("index.html", outputUrl);
-await fs.writeFile(fileURLToPath(outfile), output);
-// const outfile = new URL(file.replace(/\.js$/, ".html"), outputUrl);
+
+const templatesUrl = pathToFileURL(`${process.cwd()}/${"./templates/"}`);
+
+const templates = await fs.readdir(fileURLToPath(templatesUrl));
+
+for (const file of templates) {
+  // Get output file url
+  const outputFile = new URL(file.replace(/\.js$/, ".html"), outputUrl);
+  // Get template file path
+  const path = new URL(file, templatesUrl);
+
+  // import template component from template file
+  const { template } = await import(path);
+
+  // Get html string from template built by preact-render-to-string
+  const output = render(template);
+
+  // Save generated html in /output directory
+  await fs.writeFile(fileURLToPath(outputFile), output);
+}

@@ -4,7 +4,7 @@ import { promises as fs } from "fs";
 import { fileURLToPath, pathToFileURL } from "url";
 
 import { Layout } from "./layouts/layout.js";
-import { AccountStatementTemplate } from "./layouts/template.js";
+import { AccountStatementTemplate } from "./templates/account-statement-template.js";
 
 import { Heading, Text } from "./components/typography.js";
 

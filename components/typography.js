@@ -1,17 +1,18 @@
 import { html } from "htm/preact/index.mjs";
 
-export const Heading = ({ text, spacing }) => html` <h1
-  style="
+export const Heading = (props) => html`
+  <h1
+    ...${props}
+    style="
       font-size: 24px;
       font-weight: 600;
       line-height: 32px;
       margin: 0;
-      margin-bottom: ${spacing};
+      margin-bottom: ${props.spacing};
       text-align: left;
       color: #000000;"
->
-  ${text}
-</h1>`;
+  />
+`;
 
 export const Text = ({ text, spacing }) => html`
   <p

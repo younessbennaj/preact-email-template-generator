@@ -1,4 +1,5 @@
 import { html } from "htm/preact/index.mjs";
+import { theme } from "../theme.js";
 
 export const PrimaryButton = ({ align, href, content, spacing }) => html`
   <table
@@ -17,7 +18,7 @@ export const PrimaryButton = ({ align, href, content, spacing }) => html`
           href=${href}
           style="
             display: inline-block;
-            background: #079cee;
+            background: ${theme.colors.blue[6]};
             color: #ffffff;
             font-size: 16px;
             font-weight: 400;

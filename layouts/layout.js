@@ -29,7 +29,7 @@ const Footer = () => html`
               href="contact@leeto.co"
               style="text-decoration: none; color: #079cee"
             >
-              &nbsp;contact@leeto.co</a
+              ${" "}contact@leeto.co</a
             >
             si vous avez la moindre question.<br />
             Besoin d’aide ?
@@ -39,7 +39,7 @@ const Footer = () => html`
               target="_blank"
               style="text-decoration: none; color: #079cee"
             >
-              &nbsp;Consultez notre foire aux questions</a
+              ${" "}Consultez notre foire aux questions</a
             >.
           </p>
         </td>

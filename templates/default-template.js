@@ -28,5 +28,8 @@ const DefaultTemplate = html`
 `;
 
 export const template = html`
-  <${Layout} pageTitle="Email Template Generated" template=${DefaultTemplate} />
+  <${Layout}
+    pageTitle="Default Email Template Generated"
+    template=${DefaultTemplate}
+  />
 `;

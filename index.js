@@ -1,30 +1,32 @@
 import { html } from "htm/preact/index.mjs";
 import render from "preact-render-to-string";
 import { promises as fs } from "fs";
-import { fileURLToPath, pathToFileURL } from "url";
-
+import { fileURLToPath } from "url";
+import { getDirUrl } from "./utils/index.js";
 import { template } from "./templates/account-statement-template.js";
 
-const output = render(template);
+const outputDirUrl = getDirUrl("html-templates");
 
-const outputUrl = pathToFileURL(`${process.cwd()}/${"./output/"}`);
+const templatesDir = getDirUrl("templates");
 
-const templatesUrl = pathToFileURL(`${process.cwd()}/${"./templates/"}`);
+const templatesFiles = await fs.readdir(fileURLToPath(templatesDir));
 
-const templates = await fs.readdir(fileURLToPath(templatesUrl));
-
-for (const file of templates) {
+for (const templateFile of templatesFiles) {
   // Get output file url
-  const outputFile = new URL(file.replace(/\.js$/, ".html"), outputUrl);
+  const outputFile = new URL(
+    // html file is named same as js file name
+    templateFile.replace(/\.js$/, ".html"),
+    outputDirUrl
+  );
   // Get template file path
-  const path = new URL(file, templatesUrl);
+  const templatePath = new URL(templateFile, templatesDir);
 
   // import template component from template file
-  const { template } = await import(path);
+  const { template } = await import(templatePath);
 
   // Get html string from template built by preact-render-to-string
-  const output = render(template);
+  const documentOutput = render(template);
 
   // Save generated html in /output directory
-  await fs.writeFile(fileURLToPath(outputFile), output);
+  await fs.writeFile(fileURLToPath(outputFile), documentOutput);
 }

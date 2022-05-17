@@ -29,7 +29,7 @@ export const PrimaryButton = ({ align, href, content, spacing }) => html`
             padding: 8px 16px;
             margin-bottom: ${spacing};
             mso-padding-alt: 0px;
-            border-radius: 8px;"
+            border-radius: ${theme.borderRadius.md};"
           >${content}</a
         >
       </td>

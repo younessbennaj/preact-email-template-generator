@@ -9,7 +9,7 @@ export const SmallTransactionalTemplateWrapper = ({
   buttonLink,
 }) => html`
   <div>
-    <${Heading} spacing=${24}>${title}<//>
+    <${Heading} align="center" spacing=${48}>${title}<//>
     <${Text} spacing=${24}>${paragraph}<//>
     <${PrimaryButton}
       align="left"
